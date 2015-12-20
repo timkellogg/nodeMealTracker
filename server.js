@@ -5,6 +5,19 @@ var handlebars = require('express-handlebars');
 var app = express();
 var port = process.env.PORT || 5000;
 
+// navigation 
+var nav = [{
+  link: '/about',
+  text: 'About'
+}, {
+  link: '/help',
+  text: 'Help'
+}];
+
+// routes
+var staticPagesRouter = require(__dirname + '/app/routes/staticPagesRouter')(nav),
+          mealsRouter = require(__dirname + '/app/routes/mealsRouter')(nav);
+
 app.use(express.static('public'));
 app.set('views', __dirname + '/app/views');
 
@@ -16,9 +29,9 @@ app.engine('.hbs', handlebars({
 
 app.set('view engine', '.hbs');
 
-app.get('/', function(req, res) {
-  res.render('index');
-});
+app.use('/', staticPagesRouter);
+app.use('/meals', mealsRouter);
+
 
 app.listen(port, function() {
   console.log('node running on ' + port);

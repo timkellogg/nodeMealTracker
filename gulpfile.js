@@ -4,7 +4,8 @@ var gulp = require('gulp'),
   prettify = require('gulp-jsbeautifier'),
   sass = require('gulp-sass'),
   babel = require('gulp-babel'),
-  uglify = require('gulp-uglify');
+  uglify = require('gulp-uglify'),
+  handlebars = require('gulp-handlebars');
 
 var jsFiles = ['*.js', 'app/**/*.js'];
 
@@ -22,6 +23,13 @@ gulp.task('style', function() {
       verbose: true
     }));
 });
+
+// Pre-compiles handlebars templates
+// gulp.task('fh', function() {
+//   return gulp.src(['./app/views/*.hbs', './app/views/layouts/*.hbs'])
+//     .pipe(handlebars())
+//     .pipe(gulp.dest('./app/views'));
+// });
 
 // Fix js style errors
 gulp.task('fj', function() {
