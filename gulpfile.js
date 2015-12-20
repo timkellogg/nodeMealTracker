@@ -4,9 +4,9 @@ var jscs = require('gulp-jscs');
 var nodemon = require('gulp-nodemon');
 var prettify = require('gulp-jsbeautifier');
 var sass = require('gulp-sass');
+var babel = require('gulp-babel');
 
 var jsFiles = ['*.js', 'app/**/*.js'];
-var sassFiles = ['source/sass'];
 
 // Print out hint and style errors for js
 gulp.task('style', function() {
@@ -19,7 +19,7 @@ gulp.task('style', function() {
 });
 
 // Fix js style errors
-gulp.task('fj', function() {
+gulp.task('fj', ['style'], function() {
   return gulp.src(jsFiles)
     .pipe(prettify({
       config: '.jsbeautifyrc',
@@ -28,15 +28,24 @@ gulp.task('fj', function() {
     .pipe(gulp.dest('.'));
 });
 
-// Build sass
+// Convert sass to css
 gulp.task('sass', function() {
-  gulp.src('./source/sass/*.sass')
+  return gulp.src('./source/sass/*.sass')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('./public/custom/css'));
 });
 
+// Compile js using babel 
+gulp.task('babel', function() {
+  return gulp.src('./source/js/*.js')
+    .pipe(babel({
+      presets: ['es2015']
+    }))
+    .pipe(gulp.dest('./public/custom/js'));
+});
+
 // Inject asset dependencies 
-gulp.task('inject', ['sass'], function() {
+gulp.task('inject', ['sass', 'babel'], function() {
   var wiredep = require('wiredep').stream;
   var inject = require('gulp-inject');
 
