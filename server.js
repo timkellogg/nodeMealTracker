@@ -1,14 +1,16 @@
 var express = require('express');
+var path = require('path');
 var handlebars = require('express-handlebars');
 
 var app = express();
 var port = process.env.PORT || 5000;
 
-app.use(express.static('public'));
-app.set('views', 'views');
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('views', __dirname + '/app/views');
 
 app.engine('.hbs', handlebars({
-  defaultLayout: 'main', 
+  defaultLayout: 'main',
+  layoutsDir: 'app/views/layouts',
   extname: '.hbs'
 }));
 
