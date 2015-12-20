@@ -1,0 +1,22 @@
+{
+  "name": "calorie-tracker",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "timkellogg <tim.kellogg@gmail.com>"
+  ],
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0"
+  }
+}
