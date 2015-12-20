@@ -33,12 +33,14 @@ gulp.task('style', function() {
 
 // Fix js style errors
 gulp.task('fj', function() {
-  return gulp.src(jsFiles)
+  return gulp.src(jsFiles, {
+      base: './'
+    })
     .pipe(prettify({
       config: '.jsbeautifyrc',
       mode: 'VERIFY_AND_WRITE'
     }))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('.'));
 });
 
 // Convert sass to css

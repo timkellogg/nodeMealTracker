@@ -1,5 +1,5 @@
-var express = require('express');
-var staticPagesRouter = express.Router();
+var express = require('express'),
+  staticPagesRouter = express.Router();
 
 var router = function(nav) {
 
@@ -9,7 +9,7 @@ var router = function(nav) {
     });
 
   staticPagesRouter.route('/about')
-    .get(function(req, res){
+    .get(function(req, res) {
       res.render('about');
     });
 

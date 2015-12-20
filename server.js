@@ -16,7 +16,7 @@ var nav = [{
 
 // routes
 var staticPagesRouter = require(__dirname + '/app/routes/staticPagesRouter')(nav),
-          mealsRouter = require(__dirname + '/app/routes/mealsRouter')(nav);
+  mealsRouter = require(__dirname + '/app/routes/mealsRouter')(nav);
 
 app.use(express.static('public'));
 app.set('views', __dirname + '/app/views');

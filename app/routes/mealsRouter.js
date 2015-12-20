@@ -1,6 +1,6 @@
-var express = require('express');
-var mealsRouter = express.Router();
-var namespace = 'meals';
+var express = require('express'),
+  mealsRouter = express.Router(),
+  namespace = 'meals';
 
 var router = function(nav) {
 
@@ -20,13 +20,11 @@ var router = function(nav) {
       res.render(namespace + '/edit');
     });
 
-  mealsRouter.route('/meals/:id') 
+  mealsRouter.route('/meals/:id')
     .get(function(req, res) {
       // logic to find meal
       res.render(namespace + '/show');
     });
-
-  
 
   return mealsRouter;
 };
