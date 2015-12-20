@@ -1,31 +1,36 @@
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var jscs = require('gulp-jscs');
-var nodemon = require('gulp-nodemon');
-var prettify = require('gulp-jsbeautifier');
-var sass = require('gulp-sass');
-var babel = require('gulp-babel');
+var gulp = require('gulp'),
+  jshint = require('gulp-jshint'),
+  nodemon = require('gulp-nodemon'),
+  prettify = require('gulp-jsbeautifier'),
+  sass = require('gulp-sass'),
+  babel = require('gulp-babel'),
+  uglify = require('gulp-uglify');
 
 var jsFiles = ['*.js', 'app/**/*.js'];
 
-// Print out hint and style errors for js
+// Runs server, compiles assets, injects dependencies and fixes errors
+gulp.task('default', ['ns']);
+
+// Format assets, get jshint errors
+gulp.task('prepare', ['fj', 'style']);
+
+// Get js hint 
 gulp.task('style', function() {
   return gulp.src(jsFiles)
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish', {
       verbose: true
-    }))
-    .pipe(jscs());
+    }));
 });
 
 // Fix js style errors
-gulp.task('fj', ['style'], function() {
+gulp.task('fj', function() {
   return gulp.src(jsFiles)
     .pipe(prettify({
       config: '.jsbeautifyrc',
       mode: 'VERIFY_AND_WRITE'
     }))
-    .pipe(gulp.dest('.'));
+    .pipe(gulp.dest('./'));
 });
 
 // Convert sass to css
@@ -41,6 +46,7 @@ gulp.task('babel', function() {
     .pipe(babel({
       presets: ['es2015']
     }))
+    .pipe(uglify())
     .pipe(gulp.dest('./public/custom/js'));
 });
 
@@ -70,7 +76,6 @@ gulp.task('inject', ['sass', 'babel'], function() {
     .pipe(inject(injectSrc, injectOptions))
     .pipe(gulp.dest('./app/views/layouts'));
 });
-
 
 // Node Server - run app
 gulp.task('ns', ['inject'], function() {

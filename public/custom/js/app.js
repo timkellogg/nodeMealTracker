@@ -1,5 +1,1 @@
-"use strict";
-
-$(document).ready(function () {
-  var hello = "hi";
-});
+"use strict";$(document).ready(function(){});
