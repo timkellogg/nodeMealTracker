@@ -1,26 +1,33 @@
 var express = require('express');
 var mealsRouter = express.Router();
 var namespace = 'meals';
-var Food = require('../models/food');
+var Meal = require('../models/meal');
+
+// var meals = Meal.fetchAll().then(function(collection) {
+//   return collection;
+// });
+
+var meals = Meal.collection().fetch()
+  .then(function(collection) {
+    return meals.models;
+  })
+  .catch(function(err) {
+    console.log(err);
+  })
 
 var router = function(nav, knex) {
 
   mealsRouter.route('/')
     .get(function(req, res) {
-      knex.select('*').from('meals')
+      Meal.fetchAll()
         .then(function(queryResults) {
-          return queryResults;
-        })
-        .then(function(queryResults) {
-          // res.send(queryResults);
-          console.log(Food);
-          res.render(namespace + '/index', {
-            meals: queryResults
-          });
+          res.send(queryResults);
+          // res.render(namespace + '/index', {
+          //   meals: queryResults
+          // });
         })
         .catch(function(err) {
-          console.log(err);
-          res.send('404 Not Found');
+          res.send(err);
         });
     });
 

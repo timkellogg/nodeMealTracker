@@ -2,12 +2,6 @@
 
 <ul>
   {{#each meals as |meal|}}
-    <li>{{meal.typeOfMeal}}</li>
-    <ol>
-    {{#each meal.foods as |food|}}
-      <li>{{food.name}}</li>
-    {{/each}}
-    </ol>
-
+    <li>{{meal}}</li>
   {{/each}}
 </ul>

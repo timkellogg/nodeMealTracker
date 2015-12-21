@@ -1,10 +1,11 @@
-var base = require('./base');
+var bookshelf = require('./base');
+var Meal = require('./meal');
 
-var Day = base.Model.extend({
+var Day = bookshelf.Model.extend({
   tableName: 'days',
   meals: function() {
     return this.hasMany(Meal);
   }
 });
 
-module.exports = Day;
+module.exports = bookshelf.model('Day', Day);
