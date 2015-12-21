@@ -1,41 +1,32 @@
-
 exports.up = function(knex, Promise) {
-  
   return Promise.all([
+    knex.schema.createTable('days', function(table) {
+      table.increments('id').primary();
+      table.date('date').notNullable();
+    }),
 
     knex.schema.createTable('meals', function(table) {
       table.increments('id').primary();
-      table.string('typeOfMeal');
-      table.timestamps();
+      table.string('typeOfMeal').notNullable();
+      table.time('timeOfDay').notNullable();
+      table.integer('dayId').unsigned()
+        .references('id')
+        .inTable('days');
     }),
 
     knex.schema.createTable('foods', function(table) {
       table.increments('id').primary();
-      table.string('name');
+      table.string('name').notNullable();
       table.string('caloriesPerServing');
       table.integer('servings');
-      table.integer('meal_id')
+      table.integer('mealId').unsigned()
         .references('id')
         .inTable('meals');
-    }),
-
-    knex.schema.createTable('food_meals', function(table) {
-      table.increments('id').primary();
-      table.integer('meal_id')
-        .references('id')
-        .inTable('meals');
-      table.integer('food_id')
-        .references('id')
-        .inTable('foods');
     })
   ])
 };
 
 exports.down = function(knex, Promise) {
-  
-  return Promise.all([
-    knex.schema.dropTable('meals'),
-    knex.schema.dropTable('foods'),
-    knex.schema.dropTable('food_meals')
-  ])
+  return knex.raw('DROP TABLE meals, foods, days CASCADE');
 };
+

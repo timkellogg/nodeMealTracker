@@ -1,10 +1,12 @@
-
 module.exports = {
 
   development: {
     client: 'postgresql',
     connection: {
       database: 'calorie_tracker_development'
+    },
+    seeds: {
+      directory: './config/seeds'
     }
   },
 
@@ -13,7 +15,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'my_db',
-      user:     'username',
+      user: 'username',
       password: 'password'
     },
     pool: {
