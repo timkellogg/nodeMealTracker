@@ -5,6 +5,8 @@ var handlebars = require('express-handlebars');
 var app = express();
 var port = process.env.PORT || 5000;
 
+var db = require('./config/db');
+
 // navigation 
 var nav = [{
   link: '/about',

@@ -2,27 +2,21 @@ var express = require('express');
 var mealsRouter = express.Router();
 var namespace = 'meals';
 
-var meals = [
-  {
-    type: "breakfast",
-    timeOfDate: "",
-    foods: [
-      {
-        name: "banana",
-        caloriesPerServing: 100,
-        servings: 1,
-      },
-      {
-        name: "milk",
-        caloriesPerServing: 150,
-        servings: 2
-      }
-    ] 
-  }
-]
+// var meals = [{
+//   type: "breakfast",
+//   timeOfDate: "",
+//   foods: [{
+//     name: "banana",
+//     caloriesPerServing: 100,
+//     servings: 1,
+//   }, {
+//     name: "milk",
+//     caloriesPerServing: 150,
+//     servings: 2
+//   }]
+// }];
 
 var router = function(nav) {
-
 
   mealsRouter.route('/')
     .get(function(req, res) {
