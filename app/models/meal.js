@@ -1,11 +1,13 @@
-// var bookshelf = require('../config/db');
-// require('./food');
+var base = require('./base');
 
-// var Meal = bookshelf.Model.extend({
-//   tableName: 'foods',
-//   foods: function() {
-//     return this.hasMany('Food');
-//   }
-// });
+var Meal = base.Model.extend({
+  tableName: 'meals',
+  foods: function() {
+    return this.hasMany(Food);
+  },
+  day: function() {
+    return this.belongsTo(Day);
+  }
+});
 
-// module.exports = bookshelf.model('Meal', Meal);
+module.exports = Meal;

@@ -1,11 +1,10 @@
-// var bookshelf = require('../config/db');
-// require('./meal');
+var base = require('./base');
 
-// var Food = bookshelf.Model.extend({
-//   tableName: 'foods',
-//   meal: function() {
-//     return this.belongsTo('Meal');
-//   }
-// });
+var Food = base.Model.extend({
+  tableName: 'foods',
+  meal: function() {
+    return this.belongsTo(Meal);
+  }
+});
 
-// module.exports = bookshelf.model('Food', Food);
+module.exports = Food;

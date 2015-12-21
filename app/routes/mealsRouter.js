@@ -1,6 +1,7 @@
 var express = require('express');
 var mealsRouter = express.Router();
 var namespace = 'meals';
+var Food = require('../models/food');
 
 var router = function(nav, knex) {
 
@@ -12,6 +13,7 @@ var router = function(nav, knex) {
         })
         .then(function(queryResults) {
           // res.send(queryResults);
+          console.log(Food);
           res.render(namespace + '/index', {
             meals: queryResults
           });
