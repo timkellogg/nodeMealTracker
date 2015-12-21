@@ -1,6 +1,5 @@
 var moment = require('moment');
 
-
 exports.seed = function(knex, Promise) {
   return knex('days')
     .insert({
@@ -25,5 +24,8 @@ exports.seed = function(knex, Promise) {
           servings: 2,
           mealId: 1
         });
+    })
+    .catch(function(err) {
+      console.log('Seed error: ' + err);
     });
 };

@@ -2,25 +2,24 @@ var express = require('express');
 var mealsRouter = express.Router();
 var namespace = 'meals';
 
-// var meals = [{
-//   type: "breakfast",
-//   timeOfDate: "",
-//   foods: [{
-//     name: "banana",
-//     caloriesPerServing: 100,
-//     servings: 1,
-//   }, {
-//     name: "milk",
-//     caloriesPerServing: 150,
-//     servings: 2
-//   }]
-// }];
-
-var router = function(nav) {
+var router = function(nav, knex) {
 
   mealsRouter.route('/')
     .get(function(req, res) {
-      res.render(namespace + '/index');
+      knex.select('*').from('foods')
+        .then(function(queryResults) {
+          return queryResults;
+        })
+        .then(function(queryResults) {
+          // res.send(queryResults);
+          res.render(namespace + '/index', {
+            foods: queryResults
+          });
+        })
+        .catch(function(err) {
+          console.log(err);
+          res.send('404 Not Found');
+        });
     });
 
   mealsRouter.route('/new')
