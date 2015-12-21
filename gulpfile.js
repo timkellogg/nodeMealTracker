@@ -5,7 +5,8 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   babel = require('gulp-babel'),
   uglify = require('gulp-uglify'),
-  handlebars = require('gulp-handlebars');
+  handlebars = require('gulp-handlebars'),
+  shell = require('gulp-shell');
 
 var jsFiles = ['*.js', 'app/**/*.js'];
 
@@ -15,6 +16,13 @@ gulp.task('default', ['ns']);
 // Format assets, get jshint errors
 gulp.task('prepare', ['fj', 'style']);
 
+// Rollback migrations; runs migrations, re-seeds db
+gulp.task('reset', shell.task([
+  'knex migrate:rollback',
+  'knex migrate:latest',
+  'knex seed:run'
+]));
+
 // Get js hint 
 gulp.task('style', function() {
   return gulp.src(jsFiles)
@@ -23,13 +31,6 @@ gulp.task('style', function() {
       verbose: true
     }));
 });
-
-// Pre-compiles handlebars templates
-// gulp.task('fh', function() {
-//   return gulp.src(['./app/views/*.hbs', './app/views/layouts/*.hbs'])
-//     .pipe(handlebars())
-//     .pipe(gulp.dest('./app/views'));
-// });
 
 // Fix js style errors
 gulp.task('fj', function() {
