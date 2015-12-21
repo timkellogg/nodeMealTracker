@@ -1,7 +1,13 @@
 <h1>Meals Index</h1>
 
 <ul>
-  {{#each foods as |food|}}
-    <li>{{food.name}}</li>
+  {{#each meals as |meal|}}
+    <li>{{meal.typeOfMeal}}</li>
+    <ol>
+    {{#each meal.foods as |food|}}
+      <li>{{food.name}}</li>
+    {{/each}}
+    </ol>
+
   {{/each}}
 </ul>

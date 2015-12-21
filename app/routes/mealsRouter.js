@@ -6,14 +6,14 @@ var router = function(nav, knex) {
 
   mealsRouter.route('/')
     .get(function(req, res) {
-      knex.select('*').from('foods')
+      knex.select('*').from('meals')
         .then(function(queryResults) {
           return queryResults;
         })
         .then(function(queryResults) {
           // res.send(queryResults);
           res.render(namespace + '/index', {
-            foods: queryResults
+            meals: queryResults
           });
         })
         .catch(function(err) {
