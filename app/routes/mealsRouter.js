@@ -3,33 +3,43 @@ var mealsRouter = express.Router();
 var namespace = 'meals';
 var Meal = require('../models/meal');
 
-// var meals = Meal.fetchAll().then(function(collection) {
-//   return collection;
-// });
-
-var meals = Meal.collection().fetch()
-  .then(function(collection) {
-    return meals.models;
-  })
-  .catch(function(err) {
-    console.log(err);
-  })
-
 var router = function(nav, knex) {
 
-  mealsRouter.route('/')
+  // SHOW meals/:id
+  mealsRouter.route('/:id')
     .get(function(req, res) {
-      Meal.fetchAll()
+      var id = req.params.id;
+      Meal.where({
+          id: id
+        }).fetch({
+          withRelated: ['foods']
+        })
         .then(function(queryResults) {
-          res.send(queryResults);
-          // res.render(namespace + '/index', {
-          //   meals: queryResults
-          // });
+          res.render(namespace + '/show', {
+            meal: queryResults.toJSON()
+          });
         })
         .catch(function(err) {
-          res.send(err);
+          res.status(500).send('500: Something went wrong!');
         });
     });
+
+  // INDEX meals/
+  mealsRouter.route('/')
+    .get(function(req, res) {
+      Meal.fetchAll({
+          withRelated: ['foods']
+        })
+        .then(function(queryResults) {
+          res.render(namespace + '/index', {
+            meals: queryResults.toJSON()
+          });
+        })
+        .catch(function(err) {
+          res.status(500).send('500 Error: Something went wrong!');
+        });
+    });
+
 
   mealsRouter.route('/new')
     .get(function(req, res) {
@@ -40,12 +50,6 @@ var router = function(nav, knex) {
     .get(function(req, res) {
       // logic to find meal
       res.render(namespace + '/edit');
-    });
-
-  mealsRouter.route('/meals/:id')
-    .get(function(req, res) {
-      // logic to find meal
-      res.render(namespace + '/show');
     });
 
   return mealsRouter;

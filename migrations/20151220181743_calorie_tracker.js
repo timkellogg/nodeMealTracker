@@ -7,9 +7,9 @@ exports.up = function(knex, Promise) {
 
     knex.schema.createTable('meals', function(table) {
       table.increments('id').primary();
-      table.string('typeOfMeal').notNullable();
-      table.time('timeOfDay').notNullable();
-      table.integer('dayId').unsigned()
+      table.string('type_of_meal').notNullable();
+      table.time('time_of_day').notNullable();
+      table.integer('day_id').unsigned()
         .references('id')
         .inTable('days');
     }),
@@ -17,9 +17,9 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('foods', function(table) {
       table.increments('id').primary();
       table.string('name').notNullable();
-      table.string('caloriesPerServing');
+      table.string('calories_per_serving');
       table.integer('servings');
-      table.integer('mealId').unsigned()
+      table.integer('meal_id').unsigned()
         .references('id')
         .inTable('meals');
     })

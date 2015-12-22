@@ -1,0 +1,16 @@
+<h2>{{meal.type_of_meal}}</h2>
+<h4>{{meal.time_of_day}}</h4>
+
+<p>Items:</p>
+{{#each meal.foods as |food|}}
+<ol>
+  <li>
+    <label>Food:</label> {{food.name}}<br>
+    <label>Calories Per Serving:</label> {{food.calories_per_serving}}<br>
+    <label>Servings:</label> {{food.servings}}<br>
+  </li>
+</ol>
+{{/each}}
+
+<a class="btn btn-primary" href="/meals">Back to Meals</a>
+   

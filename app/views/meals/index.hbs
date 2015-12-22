@@ -1,7 +1,15 @@
-<h1>Meals Index</h1>
+<h1>Recent Meals</h1>
 
-<ul>
+<ol>
   {{#each meals as |meal|}}
-    <li>{{meal}}</li>
+    <li><a href="/meals/{{meal.id}}">{{meal.type_of_meal}}</a></li>
+      <ul>
+        {{#each meal.foods as |food|}}
+          <li>{{food.name}}</li>
+          <li>{{food.calories_per_serving}}</li>
+          <li>{{food.servings}}</li>
+        {{/each}}
+      </ul>
   {{/each}}
-</ul>
+</ol>
+
