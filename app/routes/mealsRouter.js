@@ -12,7 +12,7 @@ var router = function(nav, knex) {
       Meal.where({
           id: id
         }).fetch({
-          withRelated: ['foods']
+          withRelated: ['foods', 'day']
         })
         .then(function(queryResults) {
           res.render(namespace + '/show', {

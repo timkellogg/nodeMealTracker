@@ -2,7 +2,7 @@
 
 ## Intro
 
-* This is a Node/Express/Knex application that I'm using to learn Node and async javascript programming. It will eventually be repackaged so that it can be used to bootstrap small Node applications. It has all of the features of a typical web app - database layer, views, models, build tools, dependency injection, etc. *
+_This is a Node/Express/Knex application that I'm using to learn Node and async javascript programming. It will eventually be repackaged so that it can be used to bootstrap small Node applications. It has all of the features of a typical web app - database layer, views, models, build tools, dependency injection, etc._
 
 ## Setup 
 
