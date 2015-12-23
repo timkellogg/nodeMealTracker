@@ -25,6 +25,7 @@ var staticPagesRouter = require(__dirname + '/app/routes/staticPagesRouter')(nav
 var mealsRouter = require(__dirname + '/app/routes/mealsRouter')(nav, knex);
 var daysRouter = require(__dirname + '/app/routes/daysRouter')(nav, knex);
 
+
 app.use(express.static('public'));
 app.set('views', __dirname + '/app/views');
 

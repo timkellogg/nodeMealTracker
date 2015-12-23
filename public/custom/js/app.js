@@ -1,1 +1,1 @@
-"use strict";$(document).ready(function(){});
+"use strict";$(document).ready(function(){$("#newDayForm").submit(function(t){t.preventDefault();try{var n=moment($("#date").val())}catch(o){alert("fucked it up")}$.ajax({method:"POST",url:"/days",data:{date:n}}).done(function(t){console.log(t)}).fail(function(t){console.log(t)}).always(function(){console.log("finished")})})});

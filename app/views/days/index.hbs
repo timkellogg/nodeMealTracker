@@ -1,7 +1,15 @@
 <h1>Days</h1>
 
+<h1>New Day</h1>
+
+<form id="newDayForm" action="/days" method="post" accept-charset="utf-8">
+  <label for="day">Date:</label>
+  <input id="date" type="text" name="date" value="" placeholder=""> 
+</form>
+
 <ol>
   {{#each days as |day|}}
     <li><a href="/days/{{day.id}}">{{day.date}}</li>
   {{/each}}
 </ol>
+

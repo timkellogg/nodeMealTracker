@@ -55,6 +55,20 @@ var router = function(nav, knex) {
         });
     });
 
+  // CREATE /days
+  daysRouter.route('/')
+    .post(function(req, res) {
+      var date = req.body.date;
+
+      // Add validations 
+      new Day({
+        date: date
+      }).save().then(function(msg) {
+        console.log('inside new day');
+        res.send(msg);
+      });
+    });
+
   return daysRouter;
 }
 
