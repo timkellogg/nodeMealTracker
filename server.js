@@ -1,13 +1,15 @@
 var express = require('express');
 var path = require('path');
 var handlebars = require('express-handlebars');
-
-var app = express();
-var port = process.env.PORT || 5000;
-
-
+var bodyParser = require('body-parser');
 var knex = require('./config/db');
+var port = process.env.PORT || 5000;
+var app = express();
 
+app.use(bodyParser.json()); // support json 
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // navigation 
 var nav = [{
@@ -21,6 +23,7 @@ var nav = [{
 // routes
 var staticPagesRouter = require(__dirname + '/app/routes/staticPagesRouter')(nav, knex);
 var mealsRouter = require(__dirname + '/app/routes/mealsRouter')(nav, knex);
+var daysRouter = require(__dirname + '/app/routes/daysRouter')(nav, knex);
 
 app.use(express.static('public'));
 app.set('views', __dirname + '/app/views');
@@ -35,7 +38,7 @@ app.set('view engine', '.hbs');
 
 app.use('/', staticPagesRouter);
 app.use('/meals', mealsRouter);
-
+app.use('/days', daysRouter);
 
 app.listen(port, function() {
   console.log('node running on ' + port);

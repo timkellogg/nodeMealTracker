@@ -5,7 +5,7 @@ var Meal = require('../models/meal');
 
 var router = function(nav, knex) {
 
-  // SHOW meals/:id
+  // SHOW /meals/:id
   mealsRouter.route('/:id')
     .get(function(req, res) {
       var id = req.params.id;
@@ -24,7 +24,7 @@ var router = function(nav, knex) {
         });
     });
 
-  // INDEX meals/
+  // INDEX /meals
   mealsRouter.route('/')
     .get(function(req, res) {
       Meal.fetchAll({
@@ -40,10 +40,15 @@ var router = function(nav, knex) {
         });
     });
 
-
   mealsRouter.route('/new')
     .get(function(req, res) {
       res.render(namespace + '/new');
+    });
+
+  // CREATE /meals
+  mealsRouter.route('/')
+    .post(function(req, res) {
+      res.send('recieved' + req.params);
     });
 
   mealsRouter.route('/edit/:id')

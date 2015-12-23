@@ -16,6 +16,15 @@ exports.seed = function(knex, Promise) {
         });
     })
     .then(function() {
+      return knex('meals')
+        .insert({
+          id: 2,
+          type_of_meal: 'lunch',
+          time_of_day: '09:10:06 PST',
+          day_id: 1
+        });
+    })
+    .then(function() {
       return knex('foods')
         .insert({
           id: 1,

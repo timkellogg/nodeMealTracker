@@ -1,0 +1,13 @@
+<h2>Days#Show</h2>
+{{day.date}}
+
+<ul>
+  {{#each meals as |meal|}}
+    <li>
+      <a href="/meals/{{meal.id}}">
+        {{meal.type_of_meal}} 
+        ({{meal.time_of_day}})
+      </a>
+    </li>
+  {{/each}}
+</ul>
