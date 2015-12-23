@@ -11,7 +11,8 @@ exports.up = function(knex, Promise) {
       table.time('time_of_day').notNullable();
       table.integer('day_id').unsigned()
         .references('id')
-        .inTable('days');
+        .inTable('days')
+        .onDelete('CASCADE');
     }),
 
     knex.schema.createTable('foods', function(table) {
@@ -21,7 +22,8 @@ exports.up = function(knex, Promise) {
       table.integer('servings');
       table.integer('meal_id').unsigned()
         .references('id')
-        .inTable('meals');
+        .inTable('meals')
+        .onDelete('CASCADE');
     })
   ])
 };
