@@ -34,6 +34,16 @@ exports.seed = function(knex, Promise) {
           meal_id: 1
         });
     })
+    .then(function() {
+      return knex('foods')
+        .insert({
+          id: 2,
+          name: 'turkey club',
+          calories_per_serving: 500,
+          servings: 1,
+          meal_id: 2
+        });
+    })
     .catch(function(err) {
       console.log('Seed error: ' + err);
     });
