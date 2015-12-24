@@ -9,7 +9,8 @@
 
 <ol>
   {{#each days as |day|}}
-    <li><a href="/days/{{day.id}}">{{day.date}}</li>
+    <li><a href="/days/{{day.id}}">{{day.date}}</a></li> | 
+    <button id="{{day.id}}" class="delete-btn btn btn-danger">Delete</button>
   {{/each}}
 </ol>
 

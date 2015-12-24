@@ -3,6 +3,8 @@ var daysRouter = express.Router();
 var namespace = 'days';
 var Day = require('../models/day');
 var Meal = require('../models/meal');
+var Food = require('../models/food');
+var knex = require('../../config/db');
 
 var router = function(nav, knex) {
 
@@ -60,13 +62,27 @@ var router = function(nav, knex) {
     .post(function(req, res) {
       var date = req.body.date;
 
-      // Add validations 
       new Day({
         date: date
       }).save().then(function(msg) {
-        console.log('inside new day');
         res.send(msg);
       });
+    });
+
+  // DELETE /day
+  daysRouter.route('/:id')
+    .delete(function(req, res) {
+      var id = req.params.id;
+
+      new Day({
+          id: id
+        }).destroy()
+        .then(function(msg) {
+          res.send(msg);
+        })
+        .catch(function(msg) {
+          res.status(500).send(msg)
+        });
     });
 
   return daysRouter;

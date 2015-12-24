@@ -3,26 +3,54 @@ $(document).ready(function() {
   $('#newDayForm').submit(function(evt) {
     evt.preventDefault();
 
-    // Error handling 
+    let el = $('#date');
+
     try {
-      var date = moment( $('#date').val() );
+      let date = el.val();
+
+      $.ajax({
+        method: 'POST',
+        url: '/days',
+        data: { date: date }
+      })
+      .done(function(msg) {
+        console.log(msg);
+        el.val('');
+      })
+      .fail(function(msg) {
+        console.log(msg);
+        // handle server error 
+      })
+      .always(function() {
+        console.log('finished');
+      });
     } catch(err) {
-      alert('fucked it up');
-    }
+      // Handle client error
+      alert('Invalid date format');
+    };
+
+  });
+
+  $('.delete-btn').click(function(evt) {
+    evt.preventDefault();
+
+    var el = $(this);
+    var id = el.attr('id');
 
     $.ajax({
-      method: 'POST',
-      url: '/days',
-      data: { date: date }
+      method: 'DELETE',
+      url: `/days/${id}`
     })
     .done(function(msg) {
-      console.log(msg)
+      console.log(msg);
+      el.remove();
     })
     .fail(function(msg) {
-      console.log(msg)
+      console.log(msg);
+      // alert('Something went wrong');
     })
     .always(function() {
       console.log('finished')
-    });
+    })
   });
 });

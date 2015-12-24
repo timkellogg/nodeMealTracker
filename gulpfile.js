@@ -8,7 +8,7 @@ var gulp = require('gulp'),
   handlebars = require('gulp-handlebars'),
   shell = require('gulp-shell');
 
-var jsFiles = ['*.js', 'app/**/*.js', 'config/**/*.js'];
+var jsFiles = ['*.js', 'app/**/*.js', 'config/**/*.js', 'source/*'];
 
 // Runs server, compiles assets, injects dependencies and fixes errors
 gulp.task('default', ['ns']);
