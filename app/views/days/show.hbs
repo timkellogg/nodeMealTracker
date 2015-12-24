@@ -12,3 +12,25 @@
   {{/each}}
 </ul>
 
+<form id="add_day_meal_form" action="/days/{{day.id}}/meals" method="post" accept-charset="utf-8">
+
+  <input id="day" type="hidden" name="" value={{day.id}}>
+  
+  <label>Type of Meal</label>
+  <select id="type_of_meal" name="type_of_meal">
+    <option value="breakfast">Breakfast</option>
+    <option value="desert">Desert</option>
+    <option value="dinner">Dinner</option>
+    <option value="lunch">Lunch</option>
+    <option value="other">Other</option>
+    <option value="snack">Snack</option>
+  </select>
+
+  <label>Time</label>
+  <input id="time" type="time" name="time" value="" placeholder="">
+
+  {{!-- jquery to add foods --}}
+  
+  <button type="submit">Submit</button> 
+</form>
+

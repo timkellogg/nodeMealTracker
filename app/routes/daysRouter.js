@@ -8,6 +8,23 @@ var knex = require('../../config/db');
 
 var router = function(nav, knex) {
 
+  // CREATE DAY/MEALS
+  daysRouter.route('/:id/meals')
+    .post(function(req, res) {
+
+      var type_of_meal = req.body.type_of_meal;
+      var time = req.body.time;
+      var day_id = req.body.day_id;
+
+      new Meal({
+        type_of_meal: type_of_meal,
+        time_of_day: time,
+        day_id: day_id
+      }).save().then(function(msg) {
+        res.send(msg)
+      });
+    });
+
   // SHOW /days/:day_id
   daysRouter.route('/:id')
     .get(function(req, res) {
