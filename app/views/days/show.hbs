@@ -1,36 +1,42 @@
-<h2>Days#Show</h2>
-{{day.date}}
+<div class="container text-center">
 
-<ul>
-  {{#each meals as |meal|}}
-    <li>
-      <a href="/meals/{{meal.id}}">
-        {{meal.type_of_meal}} 
-        ({{meal.time_of_day}})
-      </a>
-    </li>
-  {{/each}}
-</ul>
+  <h2 class="text-center">{{convertDate day.date}}</h2>
 
-<form id="add_day_meal_form" action="/days/{{day.id}}/meals" method="post" accept-charset="utf-8">
+  <ul>
+    {{#each meals as |meal|}}
+      <li>
+        <a href="/meals/{{meal.id}}">
+          {{meal.type_of_meal}}
+          ({{meal.time_of_day}})
+        </a>
+      </li>
+    {{/each}}
+  </ul>
 
-  <input id="day" type="hidden" name="" value={{day.id}}>
-  
-  <label>Type of Meal</label>
-  <select id="type_of_meal" name="type_of_meal">
-    <option value="breakfast">Breakfast</option>
-    <option value="desert">Desert</option>
-    <option value="dinner">Dinner</option>
-    <option value="lunch">Lunch</option>
-    <option value="other">Other</option>
-    <option value="snack">Snack</option>
-  </select>
+  <form id="add_day_meal_form" action="/days/{{day.id}}/meals" method="post" accept-charset="utf-8">
 
-  <label>Time</label>
-  <input id="time" type="time" name="time" value="" placeholder="">
+    <input id="day" type="hidden" name="" value={{day.id}}>
 
-  {{!-- jquery to add foods --}}
-  
-  <button type="submit">Submit</button> 
-</form>
+    <div class="form-group">
+      <label>Type of Meal</label><br>
+      <select id="type_of_meal" name="type_of_meal">
+        <option value="breakfast">Breakfast</option>
+        <option value="desert">Desert</option>
+        <option value="dinner">Dinner</option>
+        <option value="lunch">Lunch</option>
+        <option value="other">Other</option>
+        <option value="snack">Snack</option>
+      </select>
+    </div>
 
+    <div class="form-group">
+      <label>Time</label><br>
+      <input id="time" type="time" name="time" class="text-center">
+    </div>
+
+    <button class="btn btn-success">Add food</button><br><br>
+
+    <button class="btn btn-primary" type="submit">Submit</button>
+
+  </form>
+</div>
