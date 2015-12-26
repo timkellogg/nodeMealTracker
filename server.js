@@ -3,15 +3,16 @@ var path = require('path');
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var knex = require('./config/db');
+var helpers = require('./app/helpers/convertDate');
 var port = process.env.PORT || 5000;
 var app = express();
 
-app.use(bodyParser.json()); // support json 
+app.use(bodyParser.json()); // support json
 app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-// navigation 
+// navigation
 var nav = [{
   link: '/about',
   text: 'About'
@@ -32,7 +33,8 @@ app.set('views', __dirname + '/app/views');
 app.engine('.hbs', handlebars({
   defaultLayout: 'main',
   layoutsDir: 'app/views/layouts',
-  extname: '.hbs'
+  extname: '.hbs',
+  helpers: helpers
 }));
 
 app.set('view engine', '.hbs');

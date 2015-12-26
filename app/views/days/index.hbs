@@ -1,16 +1,29 @@
-<h1>Days</h1>
+<div class="container">
 
-<h1>New Day</h1>
+  <h2 class="text-center">Log</h2>
 
-<form id="newDayForm" action="/days" method="post" accept-charset="utf-8">
-  <label for="day">Date:</label>
-  <input id="date" type="text" name="date" value="" placeholder=""> 
-</form>
+  <form class="form-inline" id="newDayForm" action="/days" method="post" accept-charset="utf-8">
+    <div class="form-group">
+      <div class="col-xs-2">
+        <label for="day">Date:</label>
+      </div>
+      <div class="col-xs-7">
+        <input id="date" type="text" name="date" class="form-control">
+      </div>
+      <div class="col-xs-3">
+        <button class="btn btn-default" type="submit">Add day</button>
+      </div>
+    </div>
+  </form>
+  <br>
 
-<ol>
-  {{#each days as |day|}}
-    <li><a href="/days/{{day.id}}">{{day.date}}</a></li> | 
-    <button id="{{day.id}}" class="delete-btn btn btn-danger">Delete</button>
-  {{/each}}
-</ol>
+  <ul id="days-list" class="list-group">
+    {{#each days as |day|}}
+      <li class="list-group-item">
+        <a href="/days/{{day.id}}">{{convertDate day.date}}</a>
+        <span id="{{day.id}}" class="delete-btn glyphicon glyphicon-trash pull-right" aria-hidden="true"></span>
+      </li>
+    {{/each}}
+  </ul>
 
+</div>

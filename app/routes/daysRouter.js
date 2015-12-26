@@ -5,6 +5,7 @@ var Day = require('../models/day');
 var Meal = require('../models/meal');
 var Food = require('../models/food');
 var knex = require('../../config/db');
+var h = require('../helpers/convertDate');
 
 var router = function(nav, knex) {
 
@@ -31,21 +32,21 @@ var router = function(nav, knex) {
       var id = req.params.id;
       var meals;
 
-      // Get meals 
+      // Get meals
       Meal.where({
           day_id: id
         }).fetchAll()
         .then(function(queryResults) {
           meals = queryResults.toJSON();
 
-          // Get day 
+          // Get day
           Day.where({
               id: id
             }).fetch()
             .then(function(queryResults) {
               day = queryResults.toJSON();
 
-              // render page 
+              // render page
               res.render(namespace + '/show', {
                 day: day,
                 meals: meals

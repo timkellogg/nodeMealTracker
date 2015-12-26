@@ -40,8 +40,15 @@ $(document).ready(function() {
         url: '/days',
         data: { date: date }
       })
-      .done(function(msg) {
-        console.log(msg);
+      .done(function(newDay) {
+
+        console.log(newDay.date);
+        let date = newDay.date; 
+        let newEl = document.createElement('li');
+        $(newEl).text(date);
+
+        $('#days-list').append(newEl);
+
         el.val('');
       })
       .fail(function(msg) {
@@ -70,7 +77,7 @@ $(document).ready(function() {
     })
     .done(function(msg) {
       console.log(msg);
-      el.remove();
+      el.parent().remove();
     })
     .fail(function(msg) {
       console.log(msg);

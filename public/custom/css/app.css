@@ -1,2 +1,11 @@
 body {
   font-family: 24px; }
+
+.delete-btn:hover {
+  cursor: pointer;
+  color: rgba(250, 20, 20, 0.8); }
+
+.list-group-item:hover {
+  cursor: pointer;
+  color: rgba(140, 140, 140, 0.5);
+  transition: 3s linear; }
