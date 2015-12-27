@@ -1,12 +1,14 @@
-var gulp = require('gulp'),
-  jshint = require('gulp-jshint'),
-  nodemon = require('gulp-nodemon'),
-  prettify = require('gulp-jsbeautifier'),
-  sass = require('gulp-sass'),
-  babel = require('gulp-babel'),
-  uglify = require('gulp-uglify'),
-  handlebars = require('gulp-handlebars'),
-  shell = require('gulp-shell');
+var gulp = require('gulp');
+var jshint = require('gulp-jshint');
+var nodemon = require('gulp-nodemon');
+var prettify = require('gulp-jsbeautifier');
+var sass = require('gulp-sass');
+var babel = require('gulp-babel');
+var uglify = require('gulp-uglify');
+var handlebars = require('gulp-handlebars');
+var shell = require('gulp-shell');
+var mocha = require('gulp-mocha');
+var util = require('gulp-util');
 
 var jsFiles = ['*.js', 'app/**/*.js', 'config/**/*.js', 'source/*'];
 

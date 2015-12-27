@@ -3,8 +3,7 @@ exports.convertDate = function(str) {
 
   if (str !== '' && !isNaN(date)) {
     return date.getMonth() + '/' + date.getDate() + '/' + date.getFullYear();
-  } else {  
-    return ''; 
+  } else {
+    return '';
   }
 };
-
