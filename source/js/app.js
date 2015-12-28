@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
   // Initialize datepicker UI for day selection
-  TinyDatePicker(document.querySelector('#date'));
-
+  TinyDatePicker(document.querySelector('input'));
+  
   $('#add_day_meal_form').submit(function(evt) {
     evt.preventDefault();
 

@@ -25,7 +25,7 @@ gulp.task('reset', shell.task([
   'knex seed:run'
 ]));
 
-// Get js hint 
+// Get js hint
 gulp.task('style', function() {
   return gulp.src(jsFiles)
     .pipe(jshint())
@@ -53,7 +53,7 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./public/custom/css'));
 });
 
-// Compile js using babel 
+// Compile js using babel
 gulp.task('babel', function() {
   return gulp.src('./source/js/*.js')
     .pipe(babel({
@@ -63,7 +63,7 @@ gulp.task('babel', function() {
     .pipe(gulp.dest('./public/custom/js'));
 });
 
-// Inject asset dependencies 
+// Inject asset dependencies
 gulp.task('inject', ['sass', 'babel'], function() {
   var wiredep = require('wiredep').stream;
   var inject = require('gulp-inject');

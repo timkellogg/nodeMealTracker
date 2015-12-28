@@ -17,7 +17,8 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.6",
-    "font-awesome": "~4.5.0"
+    "font-awesome": "~4.5.0",
+    "tiny-date-picker": "~0.0.1"
   },
   "overrides": {
     "bootstrap": {
@@ -32,6 +33,12 @@
         "less/font-awesome.less",
         "css/font-awesome.min.css",
         "scss/font-awesome.scss"
+      ]
+    },
+    "tiny-date-picker": {
+      "main": [
+        "tiny-date-picker.min.css",
+        "tiny-date-picker.min.js"
       ]
     }
   }
