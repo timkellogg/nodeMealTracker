@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+  // Initialize datepicker UI for day selection
+  TinyDatePicker(document.querySelector('#date'));
+
   $('#add_day_meal_form').submit(function(evt) {
     evt.preventDefault();
 
@@ -26,7 +29,7 @@ $(document).ready(function() {
       console.log('finished');
     });
   });
-  
+
   $('#newDayForm').submit(function(evt) {
     evt.preventDefault();
 
@@ -43,7 +46,7 @@ $(document).ready(function() {
       .done(function(newDay) {
 
         console.log(newDay.date);
-        let date = newDay.date; 
+        let date = newDay.date;
         let newEl = document.createElement('li');
         $(newEl).text(date);
 
@@ -53,7 +56,7 @@ $(document).ready(function() {
       })
       .fail(function(msg) {
         console.log(msg);
-        // handle server error 
+        // handle server error
       })
       .always(function() {
         console.log('finished');

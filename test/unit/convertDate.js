@@ -7,13 +7,13 @@ describe('the convertDate helper', function() {
     expect(helpers.convertDate(date)).to.equal('12/25/2016');
   });
 
-  it('should return nothing for empty strings', function() {
+  it('should return Invalid Date for empty strings', function() {
     var date = '';
-    expect(helpers.convertDate(date)).to.equal('');
+    expect(helpers.convertDate(date)).to.equal('Invalid Date');
   });
 
-  it('should return nothing for invalid formatted strings', function() {
+  it('should return Invalid Date for invalid formatted strings', function() {
     var date = 98759081273509817235;
-    expect(helpers.convertDate(date)).to.equal('');
+    expect(helpers.convertDate(date)).to.equal('Invalid Date');
   });
 });
